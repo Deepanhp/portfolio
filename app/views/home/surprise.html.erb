@@ -1,0 +1,152 @@
+<div class="max-w-4xl mx-auto">
+  <div class="text-center mb-12" data-aos="fade-down">
+    <h1 class="text-4xl font-bold gradient-text mb-4">Fun Zone! 🎉</h1>
+    <div class="w-24 h-1 bg-gradient-to-r from-blue-600 to-indigo-600 mx-auto rounded-full"></div>
+    <p class="text-gray-600 mt-4">Take a break and have some fun!</p>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <!-- Typing Challenge Card -->
+    <div class="bg-white/80 backdrop-blur-sm shadow-lg rounded-lg p-6 card-shine" data-aos="fade-up">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-3xl">⌨️</span>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">Speed Typing Challenge</h2>
+        <p class="text-gray-600">Can you type faster than me? Test your coding speed!</p>
+      </div>
+      <button onclick="openTypingGame()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition duration-300 transform hover:-translate-y-1">
+        Start Challenge
+      </button>
+      <div class="mt-4 text-sm text-gray-500 text-center">
+        Best Score: <span id="bestWPM" class="font-semibold">0</span> WPM
+      </div>
+    </div>
+
+    <!-- Visual Effects Card -->
+    <div class="bg-white/80 backdrop-blur-sm shadow-lg rounded-lg p-6 card-shine" data-aos="fade-up" data-aos-delay="100">
+      <div class="text-center mb-6">
+        <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <span class="text-3xl">🌈</span>
+        </div>
+        <h2 class="text-2xl font-bold mb-2">Rainbow Mode</h2>
+        <p class="text-gray-600">Add some color to your life!</p>
+      </div>
+      <button onclick="toggleRainbowMode()" class="w-full bg-gradient-to-r from-purple-600 to-pink-600 text-white px-6 py-3 rounded-lg hover:from-purple-700 hover:to-pink-700 transition duration-300 transform hover:-translate-y-1">
+        Toggle Rainbow Mode
+      </button>
+      <div class="mt-4 text-sm text-gray-500 text-center">
+        Click to start the colorful experience
+      </div>
+    </div>
+  </div>
+
+  <!-- High Scores Section -->
+  <div class="mt-12 bg-white/80 backdrop-blur-sm shadow-lg rounded-lg p-6 card-shine" data-aos="fade-up" data-aos-delay="200">
+    <h2 class="text-2xl font-bold mb-6 gradient-text text-center">High Scores</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Recent Typing Scores</h3>
+        <div id="recentScores" class="space-y-2">
+          <!-- Scores will be dynamically added here -->
+        </div>
+      </div>
+      <div>
+        <h3 class="text-lg font-semibold mb-4">Achievements</h3>
+        <div id="achievements" class="space-y-2">
+          <div class="flex items-center space-x-2">
+            <span class="text-2xl">🏃</span>
+            <span>50+ WPM: <span id="speedAchievement" class="font-semibold">Not achieved</span></span>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-2xl">🎯</span>
+            <span>100% Accuracy: <span id="accuracyAchievement" class="font-semibold">Not achieved</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Update best score from localStorage
+  const bestWPM = localStorage.getItem('bestWPM') || 0;
+  document.getElementById('bestWPM').textContent = bestWPM;
+
+  // Function to update achievements
+  function updateAchievements() {
+    const scores = JSON.parse(localStorage.getItem('typingScores') || '[]');
+    const speedAchieved = scores.some(score => score.wpm >= 50);
+    const accuracyAchieved = scores.some(score => score.accuracy === 100);
+
+    document.getElementById('speedAchievement').textContent = speedAchieved ? 'Achieved! 🎉' : 'Not achieved';
+    document.getElementById('accuracyAchievement').textContent = accuracyAchieved ? 'Achieved! 🎉' : 'Not achieved';
+
+    // Update recent scores
+    const recentScores = scores.slice(0, 5).map(score => `
+      <div class="flex justify-between items-center bg-gray-50 p-2 rounded">
+        <span>${score.wpm} WPM</span>
+        <span>${score.accuracy}% Accuracy</span>
+        <span class="text-gray-500 text-sm">${new Date(score.date).toLocaleDateString()}</span>
+      </div>
+    `).join('');
+
+    document.getElementById('recentScores').innerHTML = recentScores || '<p class="text-gray-500">No scores yet</p>';
+  }
+
+  // Call on page load
+  updateAchievements();
+
+  // Update the typing game to save scores
+  const originalStartTypingGame = window.startTypingGame;
+  window.startTypingGame = function() {
+    originalStartTypingGame();
+    const inputElement = document.getElementById('typing-input');
+    
+    inputElement.oninput = () => {
+      if (!typingGameActive) return;
+      
+      const currentText = inputElement.value;
+      const targetText = document.getElementById('typing-text').textContent;
+      
+      // Calculate accuracy
+      let correct = 0;
+      for (let i = 0; i < currentText.length; i++) {
+        if (currentText[i] === targetText[i]) correct++;
+      }
+      const accuracy = Math.round((correct / currentText.length) * 100) || 100;
+      
+      // Calculate WPM
+      const timeElapsed = (new Date() - startTime) / 1000 / 60;
+      const wordsTyped = currentText.length / 5;
+      const wpm = Math.round(wordsTyped / timeElapsed) || 0;
+      
+      // Update displays
+      document.getElementById('wpm-counter').textContent = wpm;
+      document.getElementById('accuracy-counter').textContent = `${accuracy}%`;
+      
+      // Check if completed
+      if (currentText === targetText) {
+        typingGameActive = false;
+        
+        // Save score
+        const scores = JSON.parse(localStorage.getItem('typingScores') || '[]');
+        scores.unshift({ wpm, accuracy, date: new Date().toISOString() });
+        localStorage.setItem('typingScores', JSON.stringify(scores));
+        
+        // Update best score
+        const bestWPM = Math.max(wpm, parseInt(localStorage.getItem('bestWPM') || '0'));
+        localStorage.setItem('bestWPM', bestWPM);
+        document.getElementById('bestWPM').textContent = bestWPM;
+        
+        // Update achievements
+        updateAchievements();
+        
+        setTimeout(() => {
+          alert(`Great job! You typed at ${wpm} WPM with ${accuracy}% accuracy!`);
+          startTypingGame();
+        }, 500);
+      }
+    };
+  };
+</script> 
