@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Deepan Kumar - Senior Software Engineer</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+    
+    <!-- Animation libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    
+    <!-- QR Code library -->
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    
+    <!-- GitHub API -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <!-- Typing game library -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    
+    <!-- Custom animation styles -->
+    <style>
+      .fade-in-up { animation: fadeInUp 0.6s ease-out; }
+      .fade-in { animation: fadeIn 0.6s ease-out; }
+      .slide-in { animation: slideIn 0.5s ease-out; }
+      .bounce-in { animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55); }
+      .float { animation: float 3s ease-in-out infinite; }
+      
+      @keyframes slideIn {
+        from { transform: translateX(-20px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+      }
+      
+      @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-10px); }
+        100% { transform: translateY(0px); }
+      }
+      
+      .hover-scale { transition: transform 0.2s; }
+      .hover-scale:hover { transform: scale(1.02); }
+      
+      .gradient-text {
+        background: linear-gradient(45deg, #2563eb, #7c3aed, #db2777);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        background-size: 200% 200%;
+        animation: gradient 8s ease infinite;
+      }
+      
+      @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+      }
+      
+      .card-shine {
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .card-shine::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 50%;
+        height: 100%;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.3),
+          transparent
+        );
+        transition: 0.5s;
+      }
+      
+      .card-shine:hover::before {
+        left: 100%;
+      }
+      
+      /* Dark mode styles */
+      .dark {
+        background-color: #1e293b;
+        color: #ffffff;
+      }
+      
+      .dark .bg-white\/80 {
+        background-color: rgba(30, 41, 59, 0.95);
+      }
+      
+      .dark .text-gray-500 {
+        color: #cbd5e1;
+      }
+      
+      .dark .text-gray-700 {
+        color: #f1f5f9;
+      }
+      
+      .dark .text-gray-800 {
+        color: #f8fafc;
+      }
+      
+      .dark .bg-gradient-to-br {
+        background-image: linear-gradient(to bottom right, rgba(30, 41, 59, 0.95), rgba(30, 41, 59, 0.95));
+      }
+      
+      .dark .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2);
+      }
+      
+      [data-theme="dark"] .theme-toggle svg {
+        transform: rotate(180deg);
+      }
+      
+      /* Typing game styles */
+      .typing-game {
+        font-family: 'Courier New', monospace;
+        background: rgba(0, 0, 0, 0.8);
+        padding: 2rem;
+        border-radius: 1rem;
+        color: #00ff00;
+      }
+      
+      .typing-cursor {
+        color: #00ff00;
+        animation: blink 1s infinite;
+      }
+      
+      /* Retro mode styles */
+      .retro-mode {
+        font-family: 'Courier New', monospace !important;
+        background: #000000 !important;
+        color: #00ff00 !important;
+      }
+      
+      .retro-mode * {
+        font-family: 'Courier New', monospace !important;
+        border-radius: 0 !important;
+        box-shadow: none !important;
+      }
+      
+      /* Future mode styles */
+      .future-mode {
+        background: linear-gradient(45deg, #000428, #004e92) !important;
+        color: #ffffff !important;
+      }
+      
+      .future-mode * {
+        border-radius: 20px !important;
+        backdrop-filter: blur(10px) !important;
+      }
+      
+      /* Dino game styles */
+      .dino-game {
+        height: 150px;
+        width: 600px;
+        border: 1px solid #333;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+      
+      .dino {
+        width: 40px;
+        height: 40px;
+        background: #333;
+        position: absolute;
+        bottom: 0;
+      }
+      
+      .cactus {
+        width: 20px;
+        height: 40px;
+        background: #333;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+      }
+      
+      /* Magic 8-ball styles */
+      .magic-8ball {
+        width: 200px;
+        height: 200px;
+        background: radial-gradient(circle at 30% 30%, #444, #000);
+        border-radius: 50%;
+        position: relative;
+        margin: 0 auto;
+        cursor: pointer;
+        transition: transform 0.3s;
+      }
+      
+      .magic-8ball:hover {
+        transform: scale(1.05);
+      }
+      
+      .magic-8ball-answer {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 1.2rem;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      
+      .magic-8ball.shaking {
+        animation: shake 0.5s ease-in-out;
+      }
+      
+      @keyframes shake {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(-30deg); }
+        75% { transform: rotate(30deg); }
+      }
+
+      /* Timeline styles */
+      .timeline-dot {
+        background: linear-gradient(45deg, #2563eb, #7c3aed);
+        box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+      }
+
+      .timeline-line {
+        background: linear-gradient(to bottom, #2563eb, #7c3aed);
+      }
+
+      /* Button gradients */
+      .btn-gradient {
+        background: linear-gradient(45deg, #2563eb, #7c3aed);
+        transition: all 0.3s ease;
+      }
+
+      .btn-gradient:hover {
+        background: linear-gradient(45deg, #1d4ed8, #6d28d9);
+        transform: translateY(-2px);
+      }
+
+      /* Progress bars */
+      .progress-gradient {
+        background: linear-gradient(45deg, #2563eb, #7c3aed);
+      }
+
+      /* Page Transitions */
+      .page-transition {
+        opacity: 1;
+        transform: translateY(0);
+        transition: opacity 0.5s ease, transform 0.5s ease;
+      }
+      
+      .page-exit {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      
+      .page-enter {
+        animation: pageEnter 0.5s ease forwards;
+      }
+      
+      @keyframes pageEnter {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+
+  <body class="bg-pattern min-h-screen flex flex-col">
+    <div class="fixed inset-0 bg-gradient-to-br from-gray-50/90 to-white/90 -z-10"></div>
+    
+    <nav class="bg-white/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+      <div class="max-w-6xl mx-auto px-4">
+        <div class="flex justify-between">
+          <div class="flex space-x-7">
+            <div class="flex items-center py-4">
+              <%= link_to root_path, class: "text-xl font-bold gradient-text" do %>
+                <span class="slide-in">Deepan Kumar</span>
+              <% end %>
+            </div>
+            <div class="hidden md:flex items-center space-x-1">
+              <%= link_to "About", about_path, class: "py-4 px-2 text-gray-500 hover:text-gray-900 hover:border-b-2 hover:border-blue-500 transition duration-300" %>
+              <%= link_to "Projects", projects_path, class: "py-4 px-2 text-gray-500 hover:text-gray-900 hover:border-b-2 hover:border-blue-500 transition duration-300" %>
+              <%= link_to "Contact", contact_path, class: "py-4 px-2 text-gray-500 hover:text-gray-900 hover:border-b-2 hover:border-blue-500 transition duration-300" %>
+              <%= link_to "✨ Surprise Me", surprise_path, class: "py-4 px-2 text-gray-500 hover:text-gray-900 hover:border-b-2 hover:border-blue-500 transition duration-300" %>
+            </div>
+          </div>
+          
+          <!-- Mobile menu button -->
+          <div class="md:hidden flex items-center">
+            <button class="outline-none mobile-menu-button">
+              <svg class="w-6 h-6 text-gray-500 hover:text-gray-900"
+                fill="none"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path d="M4 6h16M4 12h16M4 18h16"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main class="container mx-auto px-4 py-8 flex-grow" data-controller="transition">
+      <%= yield %>
+    </main>
+
+    <footer class="bg-white/80 backdrop-blur-sm shadow-lg mt-auto">
+      <div class="max-w-6xl mx-auto px-4 py-4">
+        <div class="flex flex-col md:flex-row justify-between items-center">
+          <div class="text-gray-500 mb-4 md:mb-0">© <%= Time.current.year %> Deepan Kumar</div>
+          <div class="flex space-x-6">
+            <a href="https://www.linkedin.com/in/deepan-kumar-5972a0a8/" target="_blank" class="text-gray-500 hover:text-blue-600 transition duration-300 transform hover:-translate-y-1">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </a>
+            <a href="https://github.com/Deepanhp" target="_blank" class="text-gray-500 hover:text-gray-900 transition duration-300 transform hover:-translate-y-1">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Theme toggle button -->
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+      <svg class="w-6 h-6 text-gray-700 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+      </svg>
+    </button>
+
+    <!-- QR Code Modal -->
+    <div id="qrModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-xl max-w-sm w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-lg font-semibold text-gray-900 dark:text-white">Save Contact Info</h3>
+          <button onclick="closeQrModal()" class="text-gray-500 hover:text-gray-700 dark:hover:text-gray-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="mb-4">
+          <div class="flex space-x-4 mb-4">
+            <button onclick="generateQR('linkedin')" id="linkedinBtn" class="flex-1 px-4 py-2 rounded transition-all duration-300">LinkedIn</button>
+            <button onclick="generateQR('contact')" id="contactBtn" class="flex-1 px-4 py-2 rounded transition-all duration-300">Contact Info</button>
+          </div>
+          <div id="qrcode" class="flex justify-center bg-white p-4 rounded"></div>
+          <div id="qrInfo" class="mt-4 text-sm text-gray-600 text-center"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Typing Game Modal -->
+    <div id="typingGameModal" class="fixed inset-0 bg-black bg-opacity-50 hidden items-center justify-center z-50">
+      <div class="typing-game max-w-2xl w-full mx-4">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-xl font-bold">Can You Type Faster Than Me?</h3>
+          <button onclick="closeTypingGame()" class="text-green-500 hover:text-green-400">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+        </div>
+        <div class="mb-4">
+          <div id="typing-text" class="text-lg mb-4"></div>
+          <textarea id="typing-input" class="w-full p-2 bg-black border border-green-500 text-green-500 focus:outline-none" rows="3"></textarea>
+        </div>
+        <div class="flex justify-between items-center">
+          <div>WPM: <span id="wpm-counter">0</span></div>
+          <div>Accuracy: <span id="accuracy-counter">100%</span></div>
+          <button onclick="startTypingGame()" class="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">New Game</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Initialize AOS -->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script>
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+
+      // Theme toggle functionality with localStorage
+      const themeToggle = document.getElementById('theme-toggle');
+      const body = document.body;
+      
+      // Check for saved theme preference
+      const savedTheme = localStorage.getItem('theme');
+      if (savedTheme) {
+        body.classList.toggle('dark', savedTheme === 'dark');
+        document.documentElement.setAttribute('data-theme', savedTheme);
+      }
+      
+      themeToggle.addEventListener('click', function() {
+        body.classList.toggle('dark');
+        const isDark = body.classList.contains('dark');
+        localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+      });
+
+      // Rainbow Mode
+      let rainbowInterval;
+      function toggleRainbowMode() {
+        if (rainbowInterval) {
+          clearInterval(rainbowInterval);
+          rainbowInterval = null;
+          document.body.style.background = '';
+          document.body.classList.remove('rainbow-active');
+        } else {
+          document.body.classList.add('rainbow-active');
+          rainbowInterval = setInterval(() => {
+            const hue = Math.random() * 360;
+            document.body.style.background = `linear-gradient(45deg, hsl(${hue}, 70%, 80%), hsl(${hue + 60}, 70%, 80%))`;
+          }, 1000);
+        }
+      }
+
+      // QR Code functionality
+      function updateQRButtons(type) {
+        const linkedinBtn = document.getElementById('linkedinBtn');
+        const contactBtn = document.getElementById('contactBtn');
+        
+        if (type === 'linkedin') {
+          linkedinBtn.classList.add('bg-blue-600', 'text-white');
+          linkedinBtn.classList.remove('bg-gray-200', 'text-gray-700');
+          contactBtn.classList.add('bg-gray-200', 'text-gray-700');
+          contactBtn.classList.remove('bg-green-600', 'text-white');
+        } else {
+          contactBtn.classList.add('bg-green-600', 'text-white');
+          contactBtn.classList.remove('bg-gray-200', 'text-gray-700');
+          linkedinBtn.classList.add('bg-gray-200', 'text-gray-700');
+          linkedinBtn.classList.remove('bg-blue-600', 'text-white');
+        }
+      }
+
+      function openQrModal() {
+        const modal = document.getElementById('qrModal');
+        if (!modal) return;
+        
+        modal.style.display = 'flex';
+        generateQR('linkedin'); // Generate LinkedIn QR by default
+        updateQRButtons('linkedin');
+      }
+
+      function closeQrModal() {
+        const modal = document.getElementById('qrModal');
+        if (modal) {
+          modal.style.display = 'none';
+        }
+      }
+
+      function generateQR(type) {
+        const qrcodeElement = document.getElementById('qrcode');
+        const qrInfo = document.getElementById('qrInfo');
+        if (!qrcodeElement) return;
+        
+        // Update button styles
+        updateQRButtons(type);
+        
+        // Clear previous QR code
+        qrcodeElement.innerHTML = '';
+        qrInfo.innerHTML = '<div class="text-gray-600">Generating QR code...</div>';
+        
+        let data = '';
+        let info = '';
+        if (type === 'linkedin') {
+          data = 'https://www.linkedin.com/in/deepan-kumar-5972a0a8/';
+          info = 'Scan to view LinkedIn profile';
+        } else {
+          data = 'BEGIN:VCARD\n' +
+                 'VERSION:3.0\n' +
+                 'FN:Deepan Kumar\n' +
+                 'TITLE:Lead Software Engineer\n' +
+                 'TEL:+91 8072286708\n' +
+                 'EMAIL:deepan.ppgit@gmail.com\n' +
+                 'URL:https://www.linkedin.com/in/deepan-kumar-5972a0a8/\n' +
+                 'END:VCARD';
+          info = 'Scan to save contact details';
+        }
+        
+        // Small delay to ensure DOM is ready
+        setTimeout(() => {
+          try {
+            qrcodeElement.innerHTML = ''; // Clear loading state
+            const qrcode = new QRCode(qrcodeElement, {
+              text: data,
+              width: 200,
+              height: 200,
+              colorDark: '#000000',
+              colorLight: '#ffffff',
+              correctLevel: QRCode.CorrectLevel.H
+            });
+
+            // Update info text
+            qrInfo.innerHTML = `<div class="font-medium ${type === 'linkedin' ? 'text-blue-600' : 'text-green-600'}">${info}</div>`;
+
+            // Add social badge if not already earned
+            const badges = JSON.parse(localStorage.getItem('badges') || '[]');
+            if (!badges.includes('social')) {
+              badges.push('social');
+              localStorage.setItem('badges', JSON.stringify(badges));
+              if (typeof updateBadges === 'function') {
+                updateBadges();
+              }
+            }
+          } catch (error) {
+            console.error('Error generating QR code:', error);
+            qrcodeElement.innerHTML = `
+              <div class="text-center">
+                <p class="text-red-500 mb-2">Error generating QR code.</p>
+                <button onclick="generateQR('${type}')" class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700">
+                  Try Again
+                </button>
+              </div>
+            `;
+            qrInfo.innerHTML = '';
+          }
+        }, 100);
+      }
+
+      // Typing Game
+      let typingGameActive = false;
+      let startTime, endTime;
+      const codingPhrases = [
+        "const handleClick = () => { setCount(prev => prev + 1) }",
+        "function quickSort(arr) { if (arr.length <= 1) return arr; }",
+        "class Node { constructor(value) { this.value = value; this.next = null; } }",
+        "SELECT users.name, COUNT(orders.id) FROM users JOIN orders"
+      ];
+
+      function openTypingGame() {
+        document.getElementById('typingGameModal').style.display = 'flex';
+        startTypingGame();
+      }
+
+      function closeTypingGame() {
+        document.getElementById('typingGameModal').style.display = 'none';
+        typingGameActive = false;
+      }
+
+      function startTypingGame() {
+        const textElement = document.getElementById('typing-text');
+        const inputElement = document.getElementById('typing-input');
+        const randomPhrase = codingPhrases[Math.floor(Math.random() * codingPhrases.length)];
+        
+        textElement.textContent = randomPhrase;
+        inputElement.value = '';
+        inputElement.focus();
+        
+        startTime = new Date();
+        typingGameActive = true;
+        
+        inputElement.oninput = () => {
+          if (!typingGameActive) return;
+          
+          const currentText = inputElement.value;
+          const targetText = textElement.textContent;
+          
+          // Calculate accuracy
+          let correct = 0;
+          for (let i = 0; i < currentText.length; i++) {
+            if (currentText[i] === targetText[i]) correct++;
+          }
+          const accuracy = Math.round((correct / currentText.length) * 100) || 100;
+          document.getElementById('accuracy-counter').textContent = `${accuracy}%`;
+          
+          // Calculate WPM
+          const timeElapsed = (new Date() - startTime) / 1000 / 60; // in minutes
+          const wordsTyped = currentText.length / 5; // assume average word length of 5
+          const wpm = Math.round(wordsTyped / timeElapsed) || 0;
+          document.getElementById('wpm-counter').textContent = wpm;
+          
+          // Check if completed
+          if (currentText === targetText) {
+            typingGameActive = false;
+            inputElement.style.borderColor = '#00ff00';
+            setTimeout(() => {
+              alert(`Great job! You typed at ${wpm} WPM with ${accuracy}% accuracy!`);
+              startTypingGame();
+            }, 500);
+          }
+        };
+      }
+    </script>
+  </body>
+</html>
