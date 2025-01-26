@@ -38,9 +38,9 @@ jobs:
 
       - name: Build site
         run: |
-          bundle exec rake assets:precompile
-          bundle exec rake assets:clean
-          bundle exec jekyll build
+          bundle exec rake assets:precompile RAILS_ENV=production
+          bundle exec rake assets:clean RAILS_ENV=production
+          bundle exec jekyll build RAILS_ENV=production
         env:
           JEKYLL_ENV: production
 
