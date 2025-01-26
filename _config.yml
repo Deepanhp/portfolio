@@ -1,0 +1,34 @@
+title: Deepan Kumar
+description: Staff Engineer Portfolio
+baseurl: "/portfolio"
+url: "https://deepanhp.github.io"
+
+# Build settings
+markdown: kramdown
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - tmp/
+  - log/
+  - .git/
+  - .github/
+  - app/
+  - bin/
+  - config/
+  - db/
+  - lib/
+  - public/
+  - storage/
+  - test/
+  - vendor/
+  - .gitignore
+  - .ruby-version
+  - config.ru
+  - package.json
+  - yarn.lock
+  - Rakefile 

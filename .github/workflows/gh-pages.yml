@@ -6,38 +6,34 @@ on:
       - main
 
 jobs:
-  deploy:
+  github-pages:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
-      - name: Set up Ruby
+
+      - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: '3.2.2'
           bundler-cache: true
-      
-      - name: Set up Node.js
+
+      - name: Setup Node
         uses: actions/setup-node@v2
         with:
           node-version: '18'
-      
+          cache: 'yarn'
+
       - name: Install dependencies
         run: |
           gem install bundler
+          bundle config set --local path 'vendor/bundle'
           bundle install
-          
-      - name: Build Rails assets
-        run: |
-          bundle exec rails assets:precompile RAILS_ENV=production
-          
+
       - name: Build site
-        run: |
-          mkdir -p _site
-          cp -r public/* _site/
-          cp -r app/views/* _site/
-          JEKYLL_ENV=production bundle exec jekyll build
-      
+        run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
