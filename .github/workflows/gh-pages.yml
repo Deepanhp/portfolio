@@ -39,35 +39,60 @@ jobs:
           bundle exec rake assets:precompile
           bundle exec rake assets:clean
 
-      - name: Prepare site content
+      - name: Prepare site directory
         run: |
-          # Create temp directory for site content
-          mkdir -p temp_site
+          # Create site directory
+          mkdir -p _site
           
-          # Copy main HTML files
-          cp -r app/views/home/* temp_site/
-          cp -r app/views/layouts/* temp_site/_layouts/
+          # Copy index.html
+          cp index.html _site/
+          
+          # Create directories for other pages
+          mkdir -p _site/about
+          mkdir -p _site/projects
+          mkdir -p _site/contact
+          mkdir -p _site/surprise
+          
+          # Copy view files as HTML
+          cp app/views/home/about.html.erb _site/about/index.html
+          cp app/views/home/projects.html.erb _site/projects/index.html
+          cp app/views/home/contact.html.erb _site/contact/index.html
+          cp app/views/home/surprise.html.erb _site/surprise/index.html
           
           # Copy assets
-          mkdir -p temp_site/assets
-          cp -r public/assets/* temp_site/assets/ || true
-          cp -r app/assets/images/* temp_site/assets/ || true
+          mkdir -p _site/assets
+          cp -r public/assets/* _site/assets/ || true
+          cp -r app/assets/images/* _site/assets/images/ || true
           
-          # Copy index file
-          cp index.html temp_site/
-          
-          # Move everything to root
-          rm -rf _site
-          mv temp_site _site
+          # Copy layout files
+          mkdir -p _site/_layouts
+          cp -r app/views/layouts/* _site/_layouts/
 
-      - name: Build Jekyll site
-        run: bundle exec jekyll build
-        env:
-          JEKYLL_ENV: production
+      - name: Process ERB files
+        run: |
+          # Create script to process ERB files
+          cat > process_erb.rb << 'EOL'
+          require 'erb'
+          require 'fileutils'
+
+          def process_erb_files(dir)
+            Dir.glob("#{dir}/**/*.html").each do |file|
+              next if file.include?('_layouts')
+              content = File.read(file)
+              # Remove ERB tags and Rails-specific code
+              processed = content.gsub(/<%=?\s*.*?\s*%>/, '')
+              File.write(file, processed)
+            end
+          end
+
+          process_erb_files('_site')
+          EOL
+
+          # Run the script
+          ruby process_erb.rb
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
-          enable_jekyll: true
