@@ -11,10 +11,9 @@ jobs:
     env:
       RAILS_ENV: production
       RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-      SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      SECRET_KEY_BASE: '4264baeefc03e565c1c3189e5a2ec57b0c28f39211396958b365be63d3b9b9ea279aeae1c9156b4f42e3db73853243b9048f3df91fdb278840a88e3a1c4b54dd'
     steps:
       - uses: actions/checkout@v2
-
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
