@@ -10,6 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       SECRET_KEY_BASE: ${{ secrets.SECRET_KEY_BASE }}
+      RAILS_ENV: production
     steps:
       - uses: actions/checkout@v2
 
@@ -32,7 +33,7 @@ jobs:
 
       - name: Build site
         run: |
-          RAILS_ENV=production bundle exec rails assets:precompile
+          bundle exec rails assets:precompile
           bundle exec jekyll build
         env:
           JEKYLL_ENV: production
