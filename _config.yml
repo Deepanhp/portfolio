@@ -5,6 +5,10 @@ url: "https://deepanhp.github.io"
 
 # Build settings
 markdown: kramdown
+include:
+  - app/views/
+  - app/assets/
+  - public/
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -17,15 +21,12 @@ exclude:
   - log/
   - .git/
   - .github/
-  - app/
   - bin/
   - config/
   - db/
   - lib/
-  - public/
   - storage/
   - test/
-  - vendor/
   - .gitignore
   - .ruby-version
   - config.ru

@@ -34,11 +34,21 @@ jobs:
           bundle config set --local path 'vendor/bundle'
           bundle install
 
-      - name: Build site
+      - name: Build Rails assets
         run: |
           bundle exec rake assets:precompile
           bundle exec rake assets:clean
-          bundle exec jekyll build
+
+      - name: Prepare site directory
+        run: |
+          mkdir -p _site
+          cp -r public/* _site/ || true
+          cp -r app/views/* _site/ || true
+          cp -r app/assets/images/* _site/ || true
+
+      - name: Build Jekyll site
+        run: |
+          JEKYLL_ENV=production bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
