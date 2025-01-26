@@ -39,16 +39,29 @@ jobs:
           bundle exec rake assets:precompile
           bundle exec rake assets:clean
 
-      - name: Prepare site directory
+      - name: Prepare site content
         run: |
-          mkdir -p _site
-          cp -r public/* _site/ || true
-          cp -r app/views/* _site/ || true
-          cp -r app/assets/images/* _site/ || true
+          # Create temp directory for site content
+          mkdir -p temp_site
+          
+          # Copy main HTML files
+          cp -r app/views/home/* temp_site/
+          cp -r app/views/layouts/* temp_site/_layouts/
+          
+          # Copy assets
+          mkdir -p temp_site/assets
+          cp -r public/assets/* temp_site/assets/ || true
+          cp -r app/assets/images/* temp_site/assets/ || true
+          
+          # Copy index file
+          cp index.html temp_site/
+          
+          # Move everything to root
+          rm -rf _site
+          mv temp_site _site
 
       - name: Build Jekyll site
-        run: |
-          JEKYLL_ENV=production bundle exec jekyll build
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
 
@@ -57,3 +70,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./_site
+          enable_jekyll: true

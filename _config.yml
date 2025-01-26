@@ -5,10 +5,18 @@ url: "https://deepanhp.github.io"
 
 # Build settings
 markdown: kramdown
+source: .
+destination: ./_site
+layouts_dir: _layouts
 include:
-  - app/views/
-  - app/assets/
-  - public/
+  - "*.html"
+  - "*.erb"
+  - "*.css"
+  - "*.js"
+  - "*.jpg"
+  - "*.png"
+  - "*.gif"
+  - "*.svg"
 exclude:
   - Gemfile
   - Gemfile.lock
