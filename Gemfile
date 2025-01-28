@@ -46,7 +46,7 @@ gem "thruster", require: false
 # gem "image_processing", "~> 1.2"
 
 # Jekyll for GitHub Pages
-gem "jekyll", "~> 4.3.2"
+gem "jekyll", "~> 4.4.0"
 gem "webrick", "~> 1.8"
 
 group :development, :test do
