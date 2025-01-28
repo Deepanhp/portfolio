@@ -274,10 +274,33 @@
           transform: translateY(0);
         }
       }
+
+      #gradient-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.8;
+        --gradient-color-1: #c2e9fb; 
+        --gradient-color-2: #a1c4fd;
+        --gradient-color-3: #d4fc79;
+        --gradient-color-4: #96e6a1;
+      }
+
+      .dark #gradient-canvas {
+        --gradient-color-1: #0f172a;
+        --gradient-color-2: #1e293b;
+        --gradient-color-3: #334155;
+        --gradient-color-4: #1e293b;
+        opacity: 0.5;
+      }
     </style>
   </head>
 
   <body class="bg-pattern min-h-screen flex flex-col">
+    <canvas id="gradient-canvas"></canvas>
     <div class="fixed inset-0 bg-gradient-to-br from-gray-50/90 to-white/90 -z-10"></div>
     
     <nav class="bg-white/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
@@ -600,6 +623,116 @@
           }
         };
       }
+
+      class Gradient {
+        constructor() {
+          this.canvas = document.getElementById('gradient-canvas');
+          this.ctx = this.canvas.getContext('2d');
+          this.colors = [
+            getComputedStyle(this.canvas).getPropertyValue('--gradient-color-1'),
+            getComputedStyle(this.canvas).getPropertyValue('--gradient-color-2'),
+            getComputedStyle(this.canvas).getPropertyValue('--gradient-color-3'),
+            getComputedStyle(this.canvas).getPropertyValue('--gradient-color-4'),
+          ];
+          this.points = [];
+          this.mouse = { x: 0, y: 0 };
+          this.numberOfPoints = 20;
+          this.init();
+          this.animate();
+          this.addEventListeners();
+        }
+
+        init() {
+          this.resize();
+          this.createPoints();
+        }
+
+        resize() {
+          this.width = window.innerWidth;
+          this.height = window.innerHeight;
+          this.canvas.width = this.width * window.devicePixelRatio;
+          this.canvas.height = this.height * window.devicePixelRatio;
+          this.canvas.style.width = this.width + 'px';
+          this.canvas.style.height = this.height + 'px';
+          this.ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
+        }
+
+        createPoints() {
+          this.points = [];
+          for (let i = 0; i < this.numberOfPoints; i++) {
+            this.points.push({
+              x: Math.random() * this.width,
+              y: Math.random() * this.height,
+              vx: (Math.random() - 0.5) * 0.5,
+              vy: (Math.random() - 0.5) * 0.5,
+            });
+          }
+        }
+
+        addEventListeners() {
+          window.addEventListener('resize', () => this.resize());
+          window.addEventListener('mousemove', (e) => {
+            this.mouse.x = e.clientX;
+            this.mouse.y = e.clientY;
+          });
+        }
+
+        animate() {
+          this.ctx.clearRect(0, 0, this.width, this.height);
+          
+          // Update points
+          this.points.forEach(point => {
+            point.x += point.vx;
+            point.y += point.vy;
+            
+            // Bounce off edges
+            if (point.x < 0 || point.x > this.width) point.vx *= -1;
+            if (point.y < 0 || point.y > this.height) point.vy *= -1;
+            
+            // Mouse interaction
+            const dx = this.mouse.x - point.x;
+            const dy = this.mouse.y - point.y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            if (distance < 100) {
+              point.x -= dx * 0.01;
+              point.y -= dy * 0.01;
+            }
+          });
+
+          // Draw gradient mesh
+          this.points.forEach((point, i) => {
+            this.points.forEach((otherPoint, j) => {
+              if (i !== j) {
+                const dx = point.x - otherPoint.x;
+                const dy = point.y - otherPoint.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+                
+                if (distance < 200) {
+                  const gradient = this.ctx.createLinearGradient(
+                    point.x, point.y, otherPoint.x, otherPoint.y
+                  );
+                  gradient.addColorStop(0, this.colors[i % this.colors.length]);
+                  gradient.addColorStop(1, this.colors[j % this.colors.length]);
+                  
+                  this.ctx.beginPath();
+                  this.ctx.strokeStyle = gradient;
+                  this.ctx.lineWidth = 1 - distance / 200;
+                  this.ctx.moveTo(point.x, point.y);
+                  this.ctx.lineTo(otherPoint.x, otherPoint.y);
+                  this.ctx.stroke();
+                }
+              }
+            });
+          });
+          
+          requestAnimationFrame(() => this.animate());
+        }
+      }
+
+      // Initialize gradient background
+      window.addEventListener('DOMContentLoaded', () => {
+        new Gradient();
+      });
     </script>
   </body>
 </html>
