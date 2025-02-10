@@ -14,6 +14,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
     
+    <!-- Three.js and GSAP for 3D animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    
     <!-- QR Code library -->
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     
@@ -296,14 +300,143 @@
         --gradient-color-4: #1e293b;
         opacity: 0.5;
       }
+
+      /* Card and interaction styles */
+      .card-base {
+        border: 1px solid rgba(99, 102, 241, 0.2);
+        background: rgba(30, 41, 59, 0.7);
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.1);
+        backdrop-filter: blur(10px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .card-base:hover {
+        border-color: rgba(99, 102, 241, 0.4);
+        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.2);
+        transform: translateY(-2px);
+      }
+
+      /* QR Code Modal Animations */
+      #qrModal {
+        transition: opacity 0.3s ease;
+      }
+
+      #qrModal .modal-content {
+        transform: scale(0.95);
+        opacity: 0;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      #qrModal.active .modal-content {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+      #qrcode img {
+        transition: transform 0.3s ease;
+      }
+
+      #qrcode img:hover {
+        transform: scale(1.05);
+      }
+
+      /* Button Micro-interactions */
+      .btn-base {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+      }
+
+      .btn-base::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+        transform: translate(-50%, -50%) scale(0);
+        transition: transform 0.5s ease;
+      }
+
+      .btn-base:hover::after {
+        transform: translate(-50%, -50%) scale(2);
+      }
+
+      .btn-base:active {
+        transform: scale(0.95);
+      }
+
+      /* Enhanced Achievement Cards */
+      .achievement-card {
+        border: 1px solid rgba(139, 92, 246, 0.2);
+        background: rgba(30, 41, 59, 0.7);
+        box-shadow: 0 4px 20px rgba(139, 92, 246, 0.1);
+        transform-style: preserve-3d;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .achievement-card:hover {
+        border-color: rgba(139, 92, 246, 0.4);
+        box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
+      }
+
+      .achievement-card .icon-container {
+        transform: translateZ(20px);
+      }
+
+      /* Contact Button Animation */
+      .contact-btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .contact-btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          rgba(255, 255, 255, 0.2),
+          transparent
+        );
+        transition: 0.5s;
+      }
+
+      .contact-btn:hover::before {
+        left: 100%;
+      }
+
+      /* QR Code Button States */
+      .qr-btn {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .qr-btn::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at center, rgba(139, 92, 246, 0.2), transparent);
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .qr-btn:hover::after {
+        opacity: 1;
+      }
     </style>
   </head>
 
-  <body class="bg-pattern min-h-screen flex flex-col">
+  <body class="bg-pattern min-h-screen flex flex-col dark">
     <canvas id="gradient-canvas"></canvas>
-    <div class="fixed inset-0 bg-gradient-to-br from-gray-50/90 to-white/90 -z-10"></div>
+    <div class="fixed inset-0 bg-gradient-to-br from-gray-900/90 to-gray-800/90 -z-10"></div>
     
-    <nav class="bg-white/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+    <nav class="bg-gray-800/80 backdrop-blur-sm shadow-lg sticky top-0 z-50">
       <div class="max-w-6xl mx-auto px-4">
         <div class="flex justify-between">
           <div class="flex space-x-7">
@@ -425,6 +558,12 @@
       // Theme toggle functionality with localStorage
       const themeToggle = document.getElementById('theme-toggle');
       const body = document.body;
+      
+      // Set dark theme as default
+      if (!localStorage.getItem('theme')) {
+        localStorage.setItem('theme', 'dark');
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
       
       // Check for saved theme preference
       const savedTheme = localStorage.getItem('theme');
