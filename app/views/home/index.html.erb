@@ -1,32 +1,16 @@
-<!-- ChatGPT-style Loader Overlay -->
-<div id="loader" class="fixed inset-0 z-[99999] overflow-hidden bg-[#343541]">
-  <div class="absolute inset-0 bg-[#343541]"></div>
+<!-- Tech-focused 3D Loader -->
+<div id="loader" class="fixed inset-0 z-[99999] overflow-hidden bg-[#0a192f]">
+  <div class="absolute inset-0 bg-[#0a192f]"></div>
   <div class="absolute inset-0 backdrop-blur-sm"></div>
   <div class="fixed inset-0 flex items-center justify-center">
-    <div class="chat-container relative w-[800px] max-w-[95vw] mx-auto px-4">
-      <!-- User Message -->
-      <div class="message user-message mb-8" style="animation-delay: 0s;">
-        <div class="flex items-center">
-          <div class="loader-avatar flex-shrink-0 mr-5" style="width: 32px; height: 32px; background-color: #9859FC; border-radius: 4px; display: flex; align-items: center; justify-content: center; color: white; font-size: 14px; font-weight: 500;">
-            U
-          </div>
-          <div class="content pr-8 ml-2" style="color: #ECECF1; font-size: 16px; line-height: 1.5; padding-top: 2px;">
-            <div class="typing-text-user">Hey! I'm looking for a cool Rubyist.</div>
-          </div>
+    <div class="loader-container text-center">
+      <div id="cube-container" class="w-32 h-32 mx-auto mb-8"></div>
+      <div class="text-container">
+        <div class="text-[#64ffda] text-xl font-mono typing-text">
+          > Loading an awesome Rubyist
         </div>
-      </div>
-      
-      <!-- Assistant Message -->
-      <div class="message assistant-message" style="animation-delay: 1.5s;">
-        <div class="flex items-center bg-[#444654] rounded-lg" style="padding: 24px 16px;">
-          <div class="loader-avatar flex-shrink-0 mr-5" style="width: 32px; height: 32px; background-color: #19C37D; border-radius: 4px; display: flex; align-items: center; justify-content: center;">
-            <svg width="20" height="20" viewBox="0 0 41 41" fill="currentColor" style="color: white;">
-              <path d="M37.5324 16.8707C37.9808 15.5241 38.1363 14.0974 37.9886 12.6859C37.8409 11.2744 37.3934 9.91076 36.676 8.68622C35.6126 6.83404 33.9882 5.3676 32.0373 4.4985C30.0864 3.62941 27.9098 3.40259 25.8215 3.85078C24.8796 2.7893 23.7219 1.94125 22.4257 1.36341C21.1295 0.785575 19.7249 0.491269 18.3058 0.500197C16.1708 0.495044 14.0893 1.16803 12.3614 2.42214C10.6335 3.67624 9.34853 5.44666 8.6917 7.47815C7.30085 7.76286 5.98686 8.3414 4.8377 9.17505C3.68854 10.0087 2.73073 11.0782 2.02839 12.312C0.956464 14.1591 0.498905 16.2988 0.721698 18.4228C0.944492 20.5467 1.83612 22.5449 3.268 24.1293C2.81966 25.4759 2.66413 26.9026 2.81182 28.3141C2.95951 29.7256 3.40701 31.0892 4.12437 32.3138C5.18791 34.1659 6.8123 35.6322 8.76321 36.5013C10.7141 37.3704 12.8907 37.5973 14.9789 37.1492C15.9208 38.2107 17.0786 39.0587 18.3747 39.6366C19.6709 40.2144 21.0755 40.5087 22.4946 40.4998C24.6307 40.5054 26.7133 39.8321 28.4418 38.5772C30.1704 37.3223 31.4556 35.5506 32.1119 33.5179C33.5027 33.2332 34.8167 32.6547 35.9659 31.821C37.115 30.9874 38.0728 29.9178 38.7752 28.684C39.8458 26.8371 40.3023 24.6979 40.0789 22.5748C39.8556 20.4517 38.9639 18.4544 37.5324 16.8707ZM22.4978 37.8849C20.7443 37.8874 19.0459 37.2733 17.6994 36.1501C17.7601 36.117 17.8666 36.0586 17.936 36.0161L25.9004 31.4156C26.1003 31.3019 26.2663 31.137 26.3813 30.9378C26.4964 30.7386 26.5563 30.5124 26.5549 30.2825V19.0542L29.9213 20.998C29.9389 21.0068 29.9541 21.0198 29.9656 21.0359C29.977 21.052 29.9842 21.0707 29.9867 21.0902V30.3889C29.9842 32.375 29.1946 34.2791 27.7909 35.6841C26.3872 37.0892 24.4838 37.8806 22.4978 37.8849ZM6.39227 31.0064C5.51397 29.4888 5.19742 27.7107 5.49804 25.9832C5.55718 26.0187 5.66048 26.0818 5.73461 26.1244L13.699 30.7248C13.8975 30.8408 14.1233 30.902 14.3532 30.902C14.583 30.902 14.8088 30.8408 15.0073 30.7248L24.731 25.1103V28.9979C24.7321 29.0177 24.7283 29.0376 24.7199 29.0556C24.7115 29.0736 24.6988 29.0893 24.6829 29.1012L16.6317 33.7497C14.9096 34.7416 12.8643 35.0097 10.9447 34.4954C9.02506 33.9811 7.38785 32.7263 6.39227 31.0064ZM4.29707 13.6194C5.17156 12.0998 6.55279 10.9364 8.19885 10.3327C8.19885 10.4013 8.19491 10.5228 8.19491 10.6071V19.808C8.19351 20.0378 8.25334 20.2638 8.36823 20.4629C8.48312 20.6619 8.64893 20.8267 8.84863 20.9404L18.5723 26.5542L15.206 28.4979C15.1894 28.5089 15.1703 28.5155 15.1505 28.5173C15.1307 28.5191 15.1107 28.516 15.0924 28.5082L7.04046 23.8557C5.32135 22.8601 4.06716 21.2235 3.55289 19.3046C3.03862 17.3858 3.30624 15.3413 4.29707 13.6194ZM31.955 20.0556L22.2312 14.4411L25.5976 12.4981C25.6142 12.4872 25.6333 12.4805 25.6531 12.4787C25.6729 12.4769 25.6928 12.4801 25.7111 12.4879L33.7631 17.1364C34.9967 17.849 36.0017 18.8982 36.6606 20.1613C37.3194 21.4244 37.6047 22.849 37.4832 24.2684C37.3617 25.6878 36.8382 27.0432 35.9743 28.1759C35.1103 29.3086 33.9415 30.1717 32.6047 30.6641C32.6047 30.5947 32.6047 30.4733 32.6047 30.3889V21.188C32.6066 20.9586 32.5474 20.7328 32.4332 20.5338C32.319 20.3348 32.154 20.1698 31.955 20.0556ZM35.3055 15.0128C35.2464 14.9765 35.1431 14.9142 35.0945 14.8717L27.1311 10.2712C26.9325 10.1554 26.7067 10.0943 26.4769 10.0943C26.247 10.0943 26.0212 10.1554 25.8227 10.2712L16.0963 15.8858V11.9982C16.0957 11.9783 16.0997 11.9585 16.1079 11.9405C16.1161 11.9225 16.1286 11.9068 16.1443 11.8949L24.1955 7.24639C25.9175 6.25468 27.9628 5.98667 29.8824 6.50094C31.8021 7.01521 33.4393 8.27014 34.4349 9.98998C35.1172 11.1894 35.4275 12.5271 35.3055 13.8668C35.3055 14.0215 35.3055 14.9142 35.3055 15.0128ZM14.2424 21.9419L10.8752 19.9981C10.8576 19.9893 10.8423 19.9763 10.8309 19.9602C10.8195 19.9441 10.8122 19.9254 10.8098 19.9058V10.6071C10.8107 9.18295 11.2173 7.78848 11.9819 6.58696C12.7466 5.38544 13.8377 4.42659 15.1275 3.82264C16.4173 3.21869 17.8524 2.99464 19.2649 3.1767C20.6775 3.35876 22.0089 3.93941 23.1034 4.85067C23.0427 4.88379 22.937 4.94215 22.8668 4.98473L14.9024 9.58517C14.7025 9.69878 14.5366 9.86356 14.4215 10.0626C14.3065 10.2616 14.2466 10.4877 14.2479 10.7175L14.2424 21.9419ZM16.071 17.9991L20.4018 15.4978L24.7325 17.9975V22.9985L20.4018 25.4983L16.071 22.9985V17.9991Z"></path>
-            </svg>
-          </div>
-          <div class="content ml-2" style="color: #ECECF1; font-size: 16px; line-height: 1.5; padding-top: 2px;">
-            <div class="typing-text-assistant">Loading Deepan's portfolio</div>
-          </div>
+        <div class="loading-bar mt-4 w-64 h-2 bg-[#112240] rounded-full overflow-hidden">
+          <div class="progress-bar h-full bg-[#64ffda] rounded-full"></div>
         </div>
       </div>
     </div>
@@ -138,10 +122,186 @@
   .main-content.visible {
     opacity: 1;
   }
+
+  .typing-text {
+    display: inline-block;
+    width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    border-right: 2px solid #64ffda;
+    animation: typing 2s steps(30, end) forwards,
+               blink-caret 0.75s step-end infinite;
+  }
+
+  .progress-bar {
+    width: 0%;
+    animation: progress 3s ease-in-out forwards;
+  }
+
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+  }
+
+  @keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #64ffda }
+  }
+
+  @keyframes progress {
+    0% { width: 0% }
+    50% { width: 70% }
+    100% { width: 100% }
+  }
+
+  /* New Animation Styles */
+  .animate-title h1 {
+    animation: slideDown 0.8s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s ease-out forwards;
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  .main-card {
+    animation: fadeScale 1s ease-out forwards;
+  }
+
+  .achievements-grid {
+    perspective: 1000px;
+  }
+
+  .achievement-card {
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+  }
+
+  .icon-float {
+    animation: iconFloat 3s ease-in-out infinite;
+  }
+
+  .content-fade-in {
+    animation: contentFade 0.5s ease-out forwards;
+  }
+
+  .skill-item {
+    opacity: 0;
+    animation: skillSlide 0.5s ease-out forwards;
+  }
+
+  .animate-gradient {
+    background: linear-gradient(90deg, #4f46e5, #7c3aed, #db2777);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: gradientFlow 3s linear infinite;
+  }
+
+  .animate-bounce-x {
+    animation: bounceX 1s infinite;
+  }
+
+  @keyframes slideDown {
+    from {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes iconFloat {
+    0%, 100% {
+      transform: translateY(0) rotate(0);
+    }
+    50% {
+      transform: translateY(-10px) rotate(10deg);
+    }
+  }
+
+  @keyframes contentFade {
+    from {
+      opacity: 0;
+      transform: translateX(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes skillSlide {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes gradientFlow {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  @keyframes bounceX {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(5px); }
+  }
 </style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
+    // Initialize Three.js scene for the cube
+    const scene = new THREE.Scene();
+    const camera = new THREE.PerspectiveCamera(75, 1, 0.1, 1000);
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    
+    renderer.setSize(128, 128);
+    document.getElementById('cube-container').appendChild(renderer.domElement);
+    
+    // Create cube
+    const geometry = new THREE.BoxGeometry(1, 1, 1);
+    const material = new THREE.MeshBasicMaterial({
+      color: 0x64ffda,
+      wireframe: true
+    });
+    const cube = new THREE.Mesh(geometry, material);
+    scene.add(cube);
+    
+    camera.position.z = 2;
+    
+    // Animation function
+    function animate() {
+      requestAnimationFrame(animate);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    }
+    animate();
+
     // Force the body and html to be fixed
     document.documentElement.classList.add('loading');
     document.body.classList.add('loading');
@@ -166,137 +326,305 @@
         document.body.classList.remove('loading');
         document.body.style.top = '';
         window.scrollTo(0, scrollPosition);
+
+        // Initialize 3D effects for content
+        initializeContentAnimations();
       }, 500);
     }, 4000);
+
+    // Initialize skill items with staggered animation
+    const skillItems = document.querySelectorAll('.skill-item');
+    skillItems.forEach((item, index) => {
+      item.style.animationDelay = `${index * 0.2}s`;
+    });
+
+    // Initialize achievement cards with tilt effect
+    const cards = document.querySelectorAll('[data-tilt]');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xRotation = ((y - rect.height / 2) / rect.height) * 10;
+        const yRotation = ((x - rect.width / 2) / rect.width) * 10;
+        
+        card.style.transform = `perspective(1000px) rotateX(${-xRotation}deg) rotateY(${yRotation}deg) scale(1.05)`;
+        card.style.transition = 'transform 0.1s';
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        card.style.transition = 'transform 0.5s';
+      });
+    });
   });
+
+  function initializeContentAnimations() {
+    // Add 3D hover effects to achievement cards
+    const cards = document.querySelectorAll('.achievement-card');
+    cards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        
+        const xRotation = ((y - rect.height / 2) / rect.height) * 20;
+        const yRotation = ((x - rect.width / 2) / rect.width) * 20;
+        
+        gsap.to(card, {
+          duration: 0.5,
+          rotateX: -xRotation,
+          rotateY: yRotation,
+          scale: 1.05,
+          ease: 'power2.out',
+          transformPerspective: 1000
+        });
+      });
+      
+      card.addEventListener('mouseleave', () => {
+        gsap.to(card, {
+          duration: 0.5,
+          rotateX: 0,
+          rotateY: 0,
+          scale: 1,
+          ease: 'power2.out'
+        });
+      });
+    });
+  }
 </script>
 
 <!-- Main Content -->
-<div class="main-content">
+<div class="main-content opacity-100">
   <div class="max-w-4xl mx-auto">
-    <div class="text-center mb-12 fade-in-up">
-      <h1 class="text-5xl font-bold gradient-text mb-4">Deepan Kumar</h1>
-      <p class="text-xl text-gray-600 dark:text-gray-400">Building scalable web applications with modern technologies</p>
+    <div class="text-center mb-12 fade-in-up animate-title">
+      <h1 class="text-5xl font-bold gradient-text mb-4 transform hover:scale-110 transition-transform duration-300">Deepan Kumar</h1>
+      <p class="text-xl text-gray-400 animate-slide-up">Building scalable web applications with modern technologies</p>
     </div>
 
-    <div class="bg-white/95 dark:bg-gray-800/95 shadow-lg rounded-lg p-8 mb-8 hover-scale fade-in">
+    <div class="bg-gray-800/95 shadow-lg rounded-lg p-8 mb-8 hover-scale fade-in transform hover:rotate-y-12 transition-all duration-500 main-card">
       <div class="flex flex-col items-center gap-8">
-        <div class="w-full md:w-96 h-96 rounded-full overflow-hidden shadow-lg transition-all duration-700 ease-in-out flex-shrink-0" data-transition-target="profile-image">
-          <%= image_tag "profile.jpg", alt: "Deepan Kumar", class: "w-full h-full object-cover" %>
+        <!-- 3D Profile Image Container -->
+        <div id="profile-3d-container" class="w-full md:w-96 h-96 relative perspective-1000">
+          <div class="profile-3d-wrapper w-full h-full transition-transform duration-1000 transform-style-preserve-3d">
+            <div class="absolute w-full h-full rounded-full overflow-hidden shadow-lg backface-hidden">
+              <%= image_tag asset_path('profile.jpg'), alt: "Deepan Kumar", class: "w-full h-full object-cover transform scale-100 hover:scale-110 transition-transform duration-500", id: "profile-image", onerror: "this.onerror=null; console.log('Image failed to load');" %>
+            </div>
+            <div class="absolute w-full h-full rounded-full overflow-hidden shadow-lg backface-hidden rotate-y-180 bg-gradient-to-br from-violet-600 to-blue-600 flex items-center justify-center">
+              <div class="text-white text-center p-8">
+                <h3 class="text-2xl font-bold mb-4">Staff Engineer</h3>
+                <p class="text-lg">Passionate about creating scalable and efficient web solutions</p>
+              </div>
+            </div>
+          </div>
         </div>
-        <p class="text-gray-700 dark:text-gray-300 mb-4 text-center max-w-2xl">
+        <p class="text-gray-300 mb-4 text-center max-w-2xl">
           Staff Engineer with over 8 years of experience in building high-performance web applications. 
           Specialized in Ruby on Rails, Hotwire, and distributed systems. Strong focus on technical leadership 
           and architectural decisions.
         </p>
       </div>
 
+      <style>
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        
+        .transform-style-preserve-3d {
+          transform-style: preserve-3d;
+        }
+        
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+        
+        #profile-3d-container:hover .profile-3d-wrapper {
+          transform: rotateY(180deg);
+        }
+
+        #profile-image {
+          animation: float 6s ease-in-out infinite;
+          transform-origin: center;
+          will-change: transform;
+          object-fit: cover;
+          width: 100%;
+          height: 100%;
+        }
+
+        @keyframes float {
+          0% {
+            transform: translateY(0px) scale(1);
+          }
+          50% {
+            transform: translateY(-20px) scale(1.05);
+          }
+          100% {
+            transform: translateY(0px) scale(1);
+          }
+        }
+      </style>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          // Debug image loading
+          const img = document.getElementById('profile-image');
+          if (img) {
+            console.log('Image element found');
+            console.log('Image source:', img.src);
+            img.addEventListener('load', () => console.log('Image loaded successfully'));
+            img.addEventListener('error', () => console.log('Image failed to load'));
+          } else {
+            console.log('Image element not found');
+          }
+
+          const container = document.getElementById('profile-3d-container');
+          const wrapper = container.querySelector('.profile-3d-wrapper');
+          let isFlipped = false;
+          
+          container.addEventListener('mousemove', (e) => {
+            if (isFlipped) return;
+            
+            const rect = container.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = ((y - centerY) / 10).toFixed(2);
+            const rotateY = ((x - centerX) / 10).toFixed(2);
+            
+            wrapper.style.transform = `perspective(1000px) rotateX(${-rotateX}deg) rotateY(${rotateY}deg)`;
+          });
+          
+          container.addEventListener('mouseleave', () => {
+            if (!isFlipped) {
+              wrapper.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+            }
+          });
+
+          container.addEventListener('click', () => {
+            isFlipped = !isFlipped;
+            if (isFlipped) {
+              wrapper.style.transform = 'perspective(1000px) rotateY(180deg)';
+            } else {
+              wrapper.style.transform = 'perspective(1000px) rotateY(0)';
+            }
+          });
+        });
+      </script>
+
       <div class="mt-12 mb-8">
-        <h3 class="font-semibold mb-6 text-xl gradient-text">Key Achievements</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-white/50 dark:bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+        <h3 class="font-semibold mb-6 text-xl gradient-text animate-gradient">Key Achievements</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 achievements-grid">
+          <div class="achievement-card card-base p-6 rounded-lg" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
             <div class="flex items-start space-x-4">
-              <div class="p-2 bg-violet-100 dark:bg-violet-900/30 rounded-lg">
-                <svg class="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="icon-container p-2 bg-violet-900/30 rounded-lg transform hover:rotate-12 transition-transform icon-float">
+                <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
                 </svg>
               </div>
-              <div>
-                <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Performance Optimization</h4>
-                <p class="text-gray-600 dark:text-gray-400">Improved application response time by 60% through strategic caching and database optimizations</p>
+              <div class="content-fade-in">
+                <h4 class="text-lg font-semibold text-gray-200">Performance Optimization</h4>
+                <p class="text-gray-400">Improved application response time by 60% through strategic caching and database optimizations</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white/50 dark:bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="achievement-card card-base p-6 rounded-lg" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
             <div class="flex items-start space-x-4">
-              <div class="p-2 bg-violet-100 dark:bg-violet-900/30 rounded-lg">
-                <svg class="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="icon-container p-2 bg-violet-900/30 rounded-lg transform hover:rotate-12 transition-transform icon-float">
+                <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
                 </svg>
               </div>
-              <div>
-                <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Team Leadership</h4>
-                <p class="text-gray-600 dark:text-gray-400">Led a team of 8 developers, delivering 3 major projects ahead of schedule</p>
+              <div class="content-fade-in">
+                <h4 class="text-lg font-semibold text-gray-200">Team Leadership</h4>
+                <p class="text-gray-400">Led a team of 8 developers, delivering 3 major projects ahead of schedule</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white/50 dark:bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="achievement-card card-base p-6 rounded-lg" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
             <div class="flex items-start space-x-4">
-              <div class="p-2 bg-violet-100 dark:bg-violet-900/30 rounded-lg">
-                <svg class="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="icon-container p-2 bg-violet-900/30 rounded-lg transform hover:rotate-12 transition-transform icon-float">
+                <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"/>
                 </svg>
               </div>
-              <div>
-                <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200">System Architecture</h4>
-                <p class="text-gray-600 dark:text-gray-400">Designed and implemented microservices architecture handling 1M+ daily requests</p>
+              <div class="content-fade-in">
+                <h4 class="text-lg font-semibold text-gray-200">System Architecture</h4>
+                <p class="text-gray-400">Designed and implemented microservices architecture handling 1M+ daily requests</p>
               </div>
             </div>
           </div>
 
-          <div class="bg-white/50 dark:bg-gray-700/50 p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="achievement-card card-base p-6 rounded-lg" data-tilt data-tilt-max="10" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.5">
             <div class="flex items-start space-x-4">
-              <div class="p-2 bg-violet-100 dark:bg-violet-900/30 rounded-lg">
-                <svg class="w-6 h-6 text-violet-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <div class="icon-container p-2 bg-violet-900/30 rounded-lg transform hover:rotate-12 transition-transform icon-float">
+                <svg class="w-6 h-6 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
                 </svg>
               </div>
-              <div>
-                <h4 class="text-lg font-semibold text-gray-800 dark:text-gray-200">Security & Compliance</h4>
-                <p class="text-gray-600 dark:text-gray-400">Implemented robust security measures and achieved SOC 2 compliance</p>
+              <div class="content-fade-in">
+                <h4 class="text-lg font-semibold text-gray-200">Security & Compliance</h4>
+                <p class="text-gray-400">Implemented robust security measures and achieved SOC 2 compliance</p>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        <div>
-          <h3 class="font-semibold mb-4 text-lg gradient-text">Core Skills</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 skills-section">
+        <div class="skill-container" data-tilt>
+          <h3 class="font-semibold mb-4 text-lg gradient-text animate-gradient">Core Skills</h3>
           <div class="space-y-3">
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="skill-item flex items-center transform hover:translate-x-2 transition-transform">
+              <svg class="w-5 h-5 mr-2 text-violet-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-gray-700 dark:text-gray-300">Ruby on Rails & Hotwire</span>
+              <span class="text-gray-300 hover:text-violet-400 transition-colors">Ruby on Rails & Hotwire</span>
             </div>
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="skill-item flex items-center transform hover:translate-x-2 transition-transform">
+              <svg class="w-5 h-5 mr-2 text-violet-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-gray-700 dark:text-gray-300">System Architecture</span>
+              <span class="text-gray-300 hover:text-violet-400 transition-colors">System Architecture</span>
             </div>
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="skill-item flex items-center transform hover:translate-x-2 transition-transform">
+              <svg class="w-5 h-5 mr-2 text-violet-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-gray-700 dark:text-gray-300">Technical Leadership</span>
+              <span class="text-gray-300 hover:text-violet-400 transition-colors">Technical Leadership</span>
             </div>
           </div>
         </div>
 
-        <div>
-          <h3 class="font-semibold mb-4 text-lg gradient-text">Specialties</h3>
+        <div class="skill-container" data-tilt>
+          <h3 class="font-semibold mb-4 text-lg gradient-text animate-gradient">Specialties</h3>
           <div class="space-y-3">
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="skill-item flex items-center transform hover:translate-x-2 transition-transform">
+              <svg class="w-5 h-5 mr-2 text-violet-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-gray-700 dark:text-gray-300">Full Stack Development</span>
+              <span class="text-gray-300 hover:text-violet-400 transition-colors">Full Stack Development</span>
             </div>
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="skill-item flex items-center transform hover:translate-x-2 transition-transform">
+              <svg class="w-5 h-5 mr-2 text-violet-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-gray-700 dark:text-gray-300">API Design & Integration</span>
+              <span class="text-gray-300 hover:text-violet-400 transition-colors">API Design & Integration</span>
             </div>
-            <div class="flex items-center">
-              <svg class="w-5 h-5 mr-2 text-violet-600 dark:text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="skill-item flex items-center transform hover:translate-x-2 transition-transform">
+              <svg class="w-5 h-5 mr-2 text-violet-400 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
               </svg>
-              <span class="text-gray-700 dark:text-gray-300">Performance Optimization</span>
+              <span class="text-gray-300 hover:text-violet-400 transition-colors">Performance Optimization</span>
             </div>
           </div>
         </div>
@@ -304,16 +632,16 @@
     </div>
 
     <div class="flex justify-center space-x-4 fade-in">
-      <%= link_to projects_path, class: "btn-gradient text-white px-8 py-3 rounded-lg transition duration-300 transform hover:-translate-y-1" do %>
+      <%= link_to projects_path, class: "btn-base btn-gradient text-white px-8 py-3 rounded-lg transition-all duration-300 transform hover:-translate-y-1 hover:scale-105 animate-float" do %>
         <span class="flex items-center">
           View Projects
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5 ml-2 animate-bounce-x" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
           </svg>
         </span>
       <% end %>
       
-      <%= link_to contact_path, class: "bg-gray-700 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:-translate-y-1" do %>
+      <%= link_to contact_path, class: "contact-btn btn-base bg-gray-700 text-white px-8 py-3 rounded-lg hover:bg-gray-800 transition duration-300 transform hover:-translate-y-1" do %>
         <span class="flex items-center">
           Contact Me
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -321,7 +649,66 @@
           </svg>
         </span>
       <% end %>
+      
+      <button class="qr-btn btn-base bg-violet-600 text-white px-8 py-3 rounded-lg hover:bg-violet-700 transition duration-300 transform hover:-translate-y-1" onclick="generateQRCode()">
+        <span class="flex items-center">
+          Generate QR
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v1m6 11h2m-6 0h-2v4m0-11v3m0 0h.01M12 12h4.01M16 20h4M4 12h4m12 0h.01M5 8h2a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1zm12 0h2a1 1 0 001-1V5a1 1 0 00-1-1h-2a1 1 0 00-1 1v2a1 1 0 001 1zM5 20h2a1 1 0 001-1v-2a1 1 0 00-1-1H5a1 1 0 00-1 1v2a1 1 0 001 1z"></path>
+          </svg>
+        </span>
+      </button>
     </div>
   </div>
 </div>
+
+<!-- QR Code Modal -->
+<div id="qrModal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+  <div class="modal-content bg-gray-800 p-6 rounded-lg shadow-xl">
+    <div id="qrcode" class="mb-4"></div>
+    <button class="btn-base w-full bg-violet-600 text-white px-4 py-2 rounded hover:bg-violet-700" onclick="closeQRModal()">
+      Close
+    </button>
+  </div>
+</div>
+
+<script>
+function generateQRCode() {
+  const modal = document.getElementById('qrModal');
+  const qrcodeContainer = document.getElementById('qrcode');
+  
+  // Clear previous QR code
+  qrcodeContainer.innerHTML = '';
+  
+  // Generate QR code
+  new QRCode(qrcodeContainer, {
+    text: window.location.href,
+    width: 200,
+    height: 200,
+    colorDark: "#64ffda",
+    colorLight: "#1e293b",
+  });
+  
+  // Show modal with animation
+  modal.classList.remove('hidden');
+  setTimeout(() => {
+    modal.classList.add('active');
+  }, 10);
+}
+
+function closeQRModal() {
+  const modal = document.getElementById('qrModal');
+  modal.classList.remove('active');
+  setTimeout(() => {
+    modal.classList.add('hidden');
+  }, 300);
+}
+
+// Close modal when clicking outside
+document.getElementById('qrModal').addEventListener('click', function(e) {
+  if (e.target === this) {
+    closeQRModal();
+  }
+});
+</script>
 
